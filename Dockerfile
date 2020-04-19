@@ -1,11 +1,9 @@
 FROM ruby:2.1.4
 
-MAINTAINER sourceperl <loic.celine@free.fr>
-
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update 
-RUN apt-get upgrade -y
+RUN apt-get upgrade --force-yes -y
 RUN apt-get install -y build-essential libpq-dev git
 
 WORKDIR /opt/
@@ -18,4 +16,4 @@ RUN bundle install
 # DB setup
 ADD database.yml config/database.yml
 
-EXPOSE 3000
+CMD bundle exec rails server -p $PORT
