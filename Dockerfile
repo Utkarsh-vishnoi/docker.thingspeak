@@ -6,7 +6,7 @@ RUN apt-get install -y --force-yes build-essential libpq-dev git
 WORKDIR /opt/
 # thingspeak SETUP
 #RUN git clone https://github.com/Utkarsh-vishnoi/thingspeak.git
-ADD thingspeak/Gemfile* /tmp/
+ADD Gemfile* /tmp/
 WORKDIR /tmp
 RUN bundle install
 #ADD thingspeak /opt/thingspeak/
