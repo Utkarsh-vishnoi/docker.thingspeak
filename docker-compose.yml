@@ -1,13 +1,16 @@
-mysql:
-  image: mysql:5.5
+postgres:
+  image: postgres:9.5
   environment:
-    MYSQL_ROOT_PASSWORD: rootpwd
-  ports:
-    - "3306"
+    - POSTGRES_PASSWORD=mypassword
+
 web:
   build: .
-  command: bundle exec rails server -p 3000
   ports:
     - "80:3000"
   links:
-    - mysql
+    - postgres
+  environment:
+    - PORT=3000
+    - DATABASE_URL=postgres://postgres:mypassword@postgres:5432/postgres
+    - MAILTRAP_API_TOKEN=b9a64f1a0892ebd
+    - APP_URL=http://localhost/
