@@ -7,9 +7,9 @@ ADD Gemfile* /tmp/
 WORKDIR /tmp
 RUN bundle install
 #ADD thingspeak /opt/thingspeak/
-RUN git clone https://github.com/Utkarsh-vishnoi/thingspeak.git /opt/thingspeak
+WORKDIR /opt
+RUN git clone https://github.com/Utkarsh-vishnoi/thingspeak.git
 WORKDIR /opt/thingspeak
-#RUN bundle install
 # DB setup
 ADD database.yml config/database.yml
 CMD bundle exec rails server -p $PORT
